@@ -1,3 +1,10 @@
 import React from "react"
-
-export default () => <div>Hello world! New changes check again new changes</div>
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+export default () => (
+  <>
+    <Header></Header>
+    <div class=""></div>
+    <Footer></Footer>
+  </>
+)
