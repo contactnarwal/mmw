@@ -8,7 +8,6 @@ const PrimaryLayout = props => (
     <Container>
       <Row>
         <Col sm={props.column}>{props.children}</Col>
-        <Col sm={props.sidebar}>{props.children}</Col>
       </Row>
       <Footer />
     </Container>
