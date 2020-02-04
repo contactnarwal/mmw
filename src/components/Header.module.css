@@ -1,0 +1,41 @@
+.header_top_right {
+  text-align: right;
+}
+.header_top_right a {
+  color: #000;
+}
+.header_top_right a:hover {
+  color: #ed1c24;
+  text-decoration: none;
+}
+.header_p {
+  color: #000;
+  font-weight: 500;
+}
+.header_p:hover {
+  color: #ed1c24;
+}
+.top_row {
+  align-items: center;
+}
+.nav a {
+  font-weight: 600;
+  color: #000 !important;
+}
+.nav a:hover {
+  color: #ed1c24 !Important;
+}
+.first_row {
+  margin-top: 10px;
+}
+hr {
+  margin: 0px;
+  margin-bottom: 10px;
+}
+.easy {
+  background: #ed1c24;
+  color: white;
+  padding: 3px 5px;
+  border-radius: 5px;
+  font-weight: 500;
+}

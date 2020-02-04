@@ -1,25 +1,49 @@
 import React from "react"
-import { Card, Button } from "react-bootstrap"
+import { Col, Button } from "react-bootstrap"
+const imgstyle = {
+  width: "100%",
+}
+const inner = {
+  background: "#333",
+  padding: "30px",
+}
+const h4 = {
+  color: "white",
+}
 const Post = props => {
+  const create = new Date(props.create)
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
   return (
-    <Card>
-      <a href={props.readMore}>
-        <Card.Img
-          variant="top"
-          src={props.image}
-          alt={props.alt || "default"}
+    <Col lg="4">
+      <Button variant="primary" href={props.readMore}>
+        Read More
+      </Button>
+      <img src={props.image} alt={props.alt || "default"} style={imgstyle} />
+      <div style={inner}>
+        <h5 dangerouslySetInnerHTML={{ __html: props.title }} style={h4} />
+        <p style={{ color: "#aaa", fontSize: "14px" }}>
+          {monthNames[create.getMonth()]} {create.getDate()},{" "}
+          {create.getUTCFullYear()} | {props.category}
+        </p>
+        <p
+          dangerouslySetInnerHTML={{ __html: props.excerpt }}
+          style={{ color: "#eee" }}
         />
-      </a>
-      <Card.Body>
-        <Card.Title>{props.title}</Card.Title>
-        <Card.Text
-          dangerouslySetInnerHTML={{ __html: props.content }}
-        ></Card.Text>
-        <Button variant="primary" href={props.readMore}>
-          Read More
-        </Button>
-      </Card.Body>
-    </Card>
+      </div>
+    </Col>
   )
 }
 export default Post
