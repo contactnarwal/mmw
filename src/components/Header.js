@@ -22,7 +22,9 @@ export default props => (
       <hr />
       <Row className={styles.top_row}>
         <Col lg="3" sm="6">
-          <img src="new-year-mmw-logo.png" alt="Make My Website New Year" />
+          <a href="/">
+            <img src="/new-year-mmw-logo.png" alt="Make My Website New Year" />
+          </a>
         </Col>
         <Col lg="7" sm="6">
           <Navbar bg="light" expand="lg" className={styles.nav}>

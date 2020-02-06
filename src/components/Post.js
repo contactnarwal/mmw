@@ -28,10 +28,9 @@ const Post = props => {
   ]
   return (
     <Col lg="4">
-      <Button variant="primary" href={props.readMore}>
-        Read More
-      </Button>
-      <img src={props.image} alt={props.alt || "default"} style={imgstyle} />
+      <a href={props.readMore}>
+        <img src={props.image} alt={props.alt || "default"} style={imgstyle} />
+      </a>
       <div style={inner}>
         <h5 dangerouslySetInnerHTML={{ __html: props.title }} style={h4} />
         <p style={{ color: "#aaa", fontSize: "14px" }}>

@@ -3,7 +3,8 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { graphql } from "gatsby"
 import { Row, Col, Container } from "react-bootstrap"
-const SingleBlog = ({ data }) => {
+const SingleBlog = ({ pageContext: { slug }, data }) => {
+  console.log("Devender " + slug)
   const post = data.wordpressPost
   return (
     <>

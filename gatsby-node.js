@@ -31,5 +31,21 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+    const posts = result.data.allWordpressPost.nodes
+    const postsPerPage = 9
+    const numPages = Math.ceil(posts.length / postsPerPage)
+
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/` : `/${i + 1}`,
+        component: path.resolve("./src/pages/index.js"),
+        context: {
+          limit: postsPerPage,
+          skip: i * postsPerPage,
+          numPages,
+          currentPage: i + 1,
+        },
+      })
+    })
   })
 }
