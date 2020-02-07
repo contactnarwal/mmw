@@ -5,12 +5,12 @@ const Footer = () => (
   <footer style={{ marginTop: "50px" }}>
     <Container>
       <Row>
-        <Col lg="3">
+        <Col lg="3" sm="6">
           <h3>Office</h3>
           <p>129 A Watton Street Werribee Victoria 3030, Australia</p>
           <p>1/4A Bessemer St, Blacktown NSW 2148</p>
         </Col>
-        <Col lg="3">
+        <Col lg="3" sm="6">
           <h3>Get In Touch</h3>
           <p>
             {" "}
@@ -22,11 +22,11 @@ const Footer = () => (
             <a href="tel:1300769302">1300769302</a>
           </p>
         </Col>
-        <Col lg="3">
+        <Col lg="3" sm="6">
           <h3>Business Hours</h3>
           <p>Mon-Fri : 9:00am - 7:00pm Sat : 9:00am - 1:00pm Sun : Closed</p>
         </Col>
-        <Col lg="3">
+        <Col lg="3" sm="6">
           <h3>Our Services</h3>
           <ul className={FooterStyles.footer_menu}>
             <li>

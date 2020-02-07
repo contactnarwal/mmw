@@ -1,8 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPhoneAlt, faTag } from "@fortawesome/free-solid-svg-icons"
+import { FaPhoneVolume, FaTag } from "react-icons/fa"
 import styles from "./Header.module.css"
 export default props => (
   <header>
@@ -15,7 +14,7 @@ export default props => (
         </Col>
         <Col className={styles.header_top_right}>
           <a href="tel:9802260750">
-            <FontAwesomeIcon icon={faPhoneAlt} /> 1300769302
+            <FaPhoneVolume /> 1300769302
           </a>
         </Col>
       </Row>
@@ -37,13 +36,8 @@ export default props => (
                 <Nav.Link as={Link} to="/about">
                   About Us
                 </Nav.Link>
-                <Nav.Link as={Link} to="/contact">
-                  Our Portfolio
-                </Nav.Link>
-                <Nav.Link as={Link} to="/contact">
-                  Services
-                </Nav.Link>
-                <Nav.Link as={Link} to="/contact">
+
+                <Nav.Link as={Link} to="/blog">
                   Blog and News
                 </Nav.Link>
                 <Nav.Link as={Link} to="/contact">
@@ -55,7 +49,7 @@ export default props => (
         </Col>
         <Col lg="2">
           <div className={styles.easy}>
-            <FontAwesomeIcon icon={faTag} />
+            <FaTag />
             &nbsp; Easy Engagment
           </div>
         </Col>
