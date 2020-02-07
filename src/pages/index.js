@@ -52,20 +52,26 @@ const Index = () => (
         </Col>
       </Row>
       <Row>
-        <Col lg="4">
+        <Col lg="4" sm="4">
           <img
             src="/Developing-Programming-And-Coding-mmw.jpg"
             alt="MMW Programing"
+            style={imgWidth}
           />
         </Col>
-        <Col lg="4">
+        <Col lg="4" sm="4">
           <img
             src="/Online-Marketing-Man-On-Computer-mmw.jpg"
             alt="Online Marketing MMW"
+            style={imgWidth}
           />
         </Col>
-        <Col lg="4">
-          <img src="/webdesign-email-hosting-mmw.jpg" alt="webdesign MMW" />
+        <Col lg="4" sm="4">
+          <img
+            src="/webdesign-email-hosting-mmw.jpg"
+            alt="webdesign MMW"
+            style={imgWidth}
+          />
         </Col>
       </Row>
     </Container>
@@ -88,21 +94,21 @@ const Index = () => (
           <Col lg="1"></Col>
           <Col lg="7">
             <Row>
-              <Col lg="4">
+              <Col lg="4" sm="4">
                 <img
                   src="/home_page/Futuristic-Approach-mmw.png"
                   alt="MMW Approach"
                 />
                 <h6>We Have A Futuristic Approach</h6>
               </Col>
-              <Col lg="4">
+              <Col lg="4" sm="4">
                 <img
                   src="/home_page/Aim-to-Excel-mmw.png"
                   alt="We Aim To Excel"
                 />
                 <h6>We Aim To Excel</h6>
               </Col>
-              <Col lg="4">
+              <Col lg="4" sm="4">
                 <img
                   src="/home_page/Understand-Your-Identity-mmw.png"
                   alt="We Understand Your Identity"
@@ -112,14 +118,14 @@ const Index = () => (
             </Row>
 
             <Row>
-              <Col lg="6">
+              <Col lg="6" sm="6">
                 <img
                   src="/home_page/Aim-to-Excel-mmw.png"
                   alt="We Aim To Excel"
                 />
                 <h6>We Aim To Excel</h6>
               </Col>
-              <Col lg="6">
+              <Col lg="6" sm="6">
                 <img
                   src="/home_page/Understand-Your-Identity-mmw.png"
                   alt="We Understand Your Identity"
