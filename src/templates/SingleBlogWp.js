@@ -1,4 +1,4 @@
-import React from "react"
+/*import React from "react"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { graphql } from "gatsby"
@@ -41,4 +41,4 @@ export const query = graphql`
       excerpt
     }
   }
-`
+`*/

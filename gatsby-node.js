@@ -13,6 +13,14 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  const Blogs = require("./src/content/blog.js")
+  createPage({
+    path: "/blog",
+    component: path.resolve("./src/templates/BlogList.js"),
+    context: { Blogs },
+  })
+
+  /*
   return graphql(`
     {
       allWordpressPost {
@@ -31,6 +39,7 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
+  
     const posts = result.data.allWordpressPost.nodes
     const postsPerPage = 9
     const numPages = Math.ceil(posts.length / postsPerPage)
@@ -47,5 +56,5 @@ exports.createPages = ({ graphql, actions }) => {
         },
       })
     })
-  })
+  }) */
 }

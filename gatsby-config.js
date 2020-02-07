@@ -38,13 +38,5 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
     },
-    {
-      resolve: "gatsby-source-wordpress",
-      options: {
-        baseUrl: "makemywebsite.com.au",
-        protocol: "https",
-        hostingWPCOM: false,
-      },
-    },
   ],
 }
