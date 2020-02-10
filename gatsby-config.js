@@ -20,6 +20,7 @@ module.exports = {
     // The following sets up the Jekyll pattern of having a
     // "pages" directory for Markdown files and a "data" directory
     // for `.json`, `.yaml`, `.csv`.
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

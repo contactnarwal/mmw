@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
 import { FaPhoneVolume, FaTag } from "react-icons/fa"
 import styles from "./Header.module.css"
+
 export default props => (
   <header>
     <Container>
@@ -36,7 +37,12 @@ export default props => (
                 <Nav.Link as={Link} to="/about">
                   About Us
                 </Nav.Link>
-
+                <Nav.Link as={Link} to="/faq">
+                  Faq
+                </Nav.Link>
+                <Nav.Link as={Link} to="/our-service">
+                  Services
+                </Nav.Link>
                 <Nav.Link as={Link} to="/blog">
                   Blog and News
                 </Nav.Link>
