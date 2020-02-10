@@ -49,7 +49,10 @@ const Contact = () => (
 
         <Row>
           <Col lg="6" style={{ margin: "auto" }}>
-            <Form action="https://getform.io/f/edc82b1c-8171-4e31-80bd-708807926029" method="POST">
+            <Form
+              action="https://getform.io/f/edc82b1c-8171-4e31-80bd-708807926029"
+              method="POST"
+            >
               <Row>
                 <Col>
                   <Form.Control placeholder="Name.." />
