@@ -4,7 +4,7 @@ import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
 import { FaPhoneVolume, FaTag } from "react-icons/fa"
 import styles from "./Header.module.css"
 
-export default props => (
+const Header = () => (
   <header>
     <Container>
       <Row className={styles.first_row}>
@@ -63,3 +63,4 @@ export default props => (
     </Container>
   </header>
 )
+export default Header
