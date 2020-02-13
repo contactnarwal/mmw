@@ -358,10 +358,7 @@ const Index = () => {
                   <h6>We Aim To Excel</h6>
                 </Col>
                 <Col lg="6" sm="6">
-                  <img
-                    src="//Understand-Your-Identity-mmw.png"
-                    alt="We Understand Your Identity"
-                  />
+                  <Img fixed={data.imageSix.childImageSharp.fixed} />
                   <h6>We Understand Your Identity</h6>
                 </Col>
               </Row>

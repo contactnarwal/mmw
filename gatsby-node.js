@@ -13,6 +13,24 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 }
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
+  const porfolios = require("./src/content/portfolio.js")
+
+  // Create porfolio page
+  createPage({
+    path: `/portfolio`,
+    component: path.resolve("./src/templates/Portfolio.js"),
+    context: { porfolios },
+  })
+
+  // Create porfolio details page
+  porfolios.forEach(portfolio => {
+    createPage({
+      path: `/portfolio/${portfolio.path}`,
+      component: require.resolve("./src/templates/single-portfolio.js"),
+      context: { portfolio, image: portfolio.image },
+    })
+  })
+
   const Blogs = require("./src/content/blog.js")
   createPage({
     path: "/blog",
