@@ -16,10 +16,8 @@ const headerCenter = {
 const headingPart = {
   fontWeight: "bold",
 }
-const bg = "why-choose-bg.jpg"
-const imgWidth = {
-  width: "100%",
-}
+const bg = "why-choose-bg.jpg/"
+
 const FlipRow = styled.div({})
 
 const HeroFlip = styled.div({
@@ -41,7 +39,7 @@ const HeroFlipItemsTwo = styled.div({
   height: "100%",
   verticalAlign: "middle",
 })
-const HeroFlipInner = styled.div({ padding: "50px 42px 50px 42px" })
+const HeroFlipInner = styled.div({ padding: "50px 42px 50px 42px/" })
 const FlipBox = styled.div({
   position: "relative",
   width: "100%",
@@ -88,9 +86,7 @@ const Index = () => {
   const data = useStaticQuery(graphql`
     query {
       imageOne: file(
-        relativePath: {
-          eq: "home_page/Developing-Programming-And-Coding-mmw.jpg"
-        }
+        relativePath: { regex: "/Developing-Programming-And-Coding-mmw.jpg/" }
       ) {
         childImageSharp {
           fluid {
@@ -99,9 +95,7 @@ const Index = () => {
         }
       }
       imageTwo: file(
-        relativePath: {
-          eq: "images/home_page/Online-Marketing-Man-On-Computer-mmw.jpg"
-        }
+        relativePath: { regex: "/Online-Marketing-Man-On-Computer-mmw.jpg/" }
       ) {
         childImageSharp {
           fluid {
@@ -110,7 +104,7 @@ const Index = () => {
         }
       }
       imageThree: file(
-        relativePath: { eq: "images/home_page/webdesign-email-hosting-mmw.jpg" }
+        relativePath: { regex: "/webdesign-email-hosting-mmw.jpg/" }
       ) {
         childImageSharp {
           fluid {
@@ -118,16 +112,14 @@ const Index = () => {
           }
         }
       }
-      imageFour: file(
-        relativePath: { eq: "images/home_page/molonglo-responsive.png" }
-      ) {
+      imageFour: file(relativePath: { regex: "/molonglo-responsive.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      headerImage: file(relativePath: { eq: "images/header.JPG" }) {
+      headerImage: file(relativePath: { regex: "images/header.JPG/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
@@ -135,7 +127,7 @@ const Index = () => {
         }
       }
       imageFive: file(
-        relativePath: { eq: "home_page/Futuristic-Approach-mmw.png" }
+        relativePath: { regex: "/Futuristic-Approach-mmw.png/" }
       ) {
         childImageSharp {
           fixed {
@@ -144,7 +136,7 @@ const Index = () => {
         }
       }
       imageSix: file(
-        relativePath: { eq: "home_page/Understand-Your-Identity-mmw.png" }
+        relativePath: { regex: "/Understand-Your-Identity-mmw.png/" }
       ) {
         childImageSharp {
           fixed {
@@ -152,67 +144,63 @@ const Index = () => {
           }
         }
       }
-      imageSeven: file(relativePath: { eq: "home_page/Aim-to-Excel-mmw.png" }) {
+      imageSeven: file(relativePath: { regex: "/Aim-to-Excel-mmw.png/" }) {
         childImageSharp {
           fixed {
             ...GatsbyImageSharpFixed
           }
         }
       }
-      imageEight: file(relativePath: { eq: "home_page/web-design_img.png" }) {
+      imageEight: file(relativePath: { regex: "/web-design_img.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageNine: file(relativePath: { eq: "home_page/online-marketing.png" }) {
+      imageNine: file(relativePath: { regex: "/online-marketing.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageTen: file(
-        relativePath: { eq: "home_page/web-email-hosting_img.png" }
-      ) {
+      imageTen: file(relativePath: { regex: "/web-email-hosting_img.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageEleven: file(relativePath: { eq: "home_page/web-design_img.png" }) {
+      imageEleven: file(relativePath: { regex: "/web-design_img.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageTwelve: file(relativePath: { eq: "home_page/ecommerce-img.png" }) {
+      imageTwelve: file(relativePath: { regex: "/ecommerce-img.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageThirteen: file(relativePath: { eq: "home_page/seo-service.png" }) {
+      imageThirteen: file(relativePath: { regex: "/seo-service.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageFourteen: file(
-        relativePath: { eq: "home_page/content-writing.png" }
-      ) {
+      imageFourteen: file(relativePath: { regex: "/content-writing.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      imageFifteen: file(relativePath: { eq: "home_page/social.png" }) {
+      imageFifteen: file(relativePath: { regex: "/social.png/" }) {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
@@ -220,7 +208,7 @@ const Index = () => {
         }
       }
       imageSixteen: file(
-        relativePath: { eq: "home_page/make-my-website-slide.jpg" }
+        relativePath: { regex: "/make-my-website-slide.jpg/" }
       ) {
         childImageSharp {
           fluid {
@@ -230,7 +218,7 @@ const Index = () => {
       }
       imageSeventeen: file(
         relativePath: {
-          eq: "home_page/material-design-geometric-stock-dark-black.jpg"
+          regex: "/material-design-geometric-stock-dark-black.jpg/"
         }
       ) {
         childImageSharp {
@@ -240,7 +228,7 @@ const Index = () => {
         }
       }
       imageEighteen: file(
-        relativePath: { eq: "home_page/toybox-early-learning-big.png" }
+        relativePath: { regex: "/toybox-early-learning-big.png/" }
       ) {
         childImageSharp {
           fluid {
@@ -248,14 +236,14 @@ const Index = () => {
           }
         }
       }
-      imageNineteen: file(relativePath: { eq: "home_page/testi_user.JPG" }) {
+      imageNineteen: file(relativePath: { regex: "/testi_user.JPG/" }) {
         childImageSharp {
           fixed {
             ...GatsbyImageSharpFixed
           }
         }
       }
-      imageTwenty: file(relativePath: { eq: "home_page/five-stars.png" }) {
+      imageTwenty: file(relativePath: { regex: "/five-stars.png/" }) {
         childImageSharp {
           fixed {
             ...GatsbyImageSharpFixed
@@ -263,7 +251,7 @@ const Index = () => {
         }
       }
       imageTwentyOne: file(
-        relativePath: { eq: "home_page/toybox-early-learning-big.png" }
+        relativePath: { regex: "/toybox-early-learning-big.png/" }
       ) {
         childImageSharp {
           fluid {
@@ -273,7 +261,6 @@ const Index = () => {
       }
     }
   `)
-
   return (
     <PrimaryLayout>
       <br></br>
@@ -290,10 +277,10 @@ const Index = () => {
             <img
               src="/devider.png"
               alt="devider"
-              style={{ margin: "auto", display: "block" }}
+              style={{ margin: "auto", display: "block/" }}
             />
             <br /> <br />
-            <h4 style={{ textAlign: "center" }}>
+            <h4 style={{ textAlign: "center/" }}>
               We Don’t Just Build Websites, We Build Your Online Business!
             </h4>
             <br />
@@ -330,7 +317,7 @@ const Index = () => {
       <br />
       <br />
       <br />
-      <div style={{ backgroundImage: "url(" + bg + ")", padding: "80px 0px" }}>
+      <div style={{ backgroundImage: "url(" + bg + ")", padding: "80px 0px/" }}>
         <Container>
           <Row>
             <Col>
@@ -372,7 +359,7 @@ const Index = () => {
                 </Col>
                 <Col lg="6" sm="6">
                   <img
-                    src="/home_page/Understand-Your-Identity-mmw.png"
+                    src="//Understand-Your-Identity-mmw.png"
                     alt="We Understand Your Identity"
                   />
                   <h6>We Understand Your Identity</h6>
@@ -392,13 +379,13 @@ const Index = () => {
               Our <span style={headingPart}>Service </span>
             </h2>
             <img src="/devider.png" alt="devider" style={devider} />
-            <p style={{ textAlign: "center" }}>
+            <p style={{ textAlign: "center/" }}>
               Elevate Your Businesses Capabilities With One Step. We offer a
               wide variety of website design services.
             </p>
             <Button
               variant="danger"
-              style={{ display: "block", margin: "auto" }}
+              style={{ display: "block", margin: "auto/" }}
             >
               View All Services
             </Button>
@@ -558,7 +545,7 @@ const Index = () => {
               </FlipItemInner>
             </FlipLg>
 
-            <div style={{ clear: "both" }}></div>
+            <div style={{ clear: "both/" }}></div>
           </FlipRow>
         </HeroFlipItemsTwo>
       </HeroFlip>
@@ -566,7 +553,6 @@ const Index = () => {
       <br />
       <div
         style={{
-          background: "url('/home_page/make-my-website-slide.jpg')",
           padding: "80px 0px",
         }}
       >
@@ -579,7 +565,7 @@ const Index = () => {
               <img src="/devider.png" alt="devider" style={devider} />
               <br />
               <br />
-              <h5 style={{ textAlign: "center" }}>
+              <h5 style={{ textAlign: "center/" }}>
                 5 Star Rated Web Design Agency.
               </h5>
             </Col>
@@ -587,7 +573,7 @@ const Index = () => {
           <Row
             style={{
               backgroundImage:
-                "url('/home_page/material-design-geometric-stock-dark-black.jpg')",
+                "url('//material-design-geometric-stock-dark-black.jpg')",
               padding: "20px 30px",
             }}
           >
@@ -597,13 +583,13 @@ const Index = () => {
             <Col lg="6">
               <Img
                 fixed={data.imageNineteen.childImageSharp.fixed}
-                style={{ margin: "auto", display: "block" }}
+                style={{ margin: "auto", display: "block/" }}
               />
               <Img
                 fixed={data.imageTwenty.childImageSharp.fixed}
-                style={{ margin: "auto", display: "block" }}
+                style={{ margin: "auto", display: "block/" }}
               />
-              <p style={{ color: "white" }}>
+              <p style={{ color: "white/" }}>
                 Absolutely LOVE my website!! This team is beyond amazing. Had a
                 bad experience with another designer and these guys definitely
                 came to my rescue!! Thank you so much. I LOVE LOVE LOVE my
@@ -611,7 +597,7 @@ const Index = () => {
                 you to everyone I know!
               </p>
               <p>
-                <b style={{ color: "white" }}>Amanie Kalache - </b>
+                <b style={{ color: "white/" }}>Amanie Kalache - </b>
                 <a href="https://www.123smilephotography.com/">
                   www.123smilephotography.com/
                 </a>

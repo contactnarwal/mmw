@@ -3,7 +3,6 @@ import PrimaryLayout from "../layouts/PrimaryLayouts"
 import { Row, Col, Container } from "react-bootstrap"
 import styled from "@emotion/styled"
 import Accordion from "../templates/faq"
-import { css } from "@emotion/core"
 
 const P = styled.p({
   lineHeight: "28px",

@@ -33,9 +33,7 @@ const BlogList = ({ pageContext: { Blogs }, data }) => {
 
     return newBlog
   })
-  const imgstyle = {
-    width: "100%",
-  }
+
   const inner = {
     background: "#333",
     padding: "30px",
