@@ -273,7 +273,7 @@ const Index = () => {
       }
     }
   `)
-  console.log(data.imageOne.childImageSharp.fluid)
+
   return (
     <PrimaryLayout>
       <br></br>
