@@ -15,7 +15,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   const porfolios = require("./src/content/portfolio.js")
 
-  // Create porfolio page
   createPage({
     path: `/portfolio`,
     component: path.resolve("./src/templates/Portfolio.js"),
@@ -36,6 +35,14 @@ exports.createPages = ({ graphql, actions }) => {
     path: "/blog",
     component: path.resolve("./src/templates/BlogList.js"),
     context: { Blogs },
+  })
+
+  Blogs.forEach(blog => {
+    createPage({
+      path: `/${blog.path}`,
+      component: require.resolve("./src/templates/SingleBlog.js"),
+      context: { blog, image: blog.source_url },
+    })
   })
 
   /*

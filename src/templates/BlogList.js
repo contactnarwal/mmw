@@ -73,11 +73,11 @@ const BlogList = ({ pageContext: { Blogs }, data }) => {
           </Col>
         </Row>
         <Row>
-          {blogWithImages.map((Blogs, Index) => {
+          {blogWithImages.map((Blogs, index) => {
             const create = new Date(Blogs.date)
             return (
-              <Col lg="4">
-                <a href={Blogs.path}>
+              <Col lg="4" key={index}>
+                <a href={`/${Blogs.path}`}>
                   {Blogs.childImageSharp && (
                     <Img fluid={Blogs.childImageSharp.fluid} />
                   )}
