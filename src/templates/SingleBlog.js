@@ -26,7 +26,7 @@ const SingleBlog = ({ pageContext: { blog }, data }) => {
 }
 export const pageQuery = graphql`
   query GetBlog($image: String) {
-    image: file(relativePath: { eq: $image }) {
+    image: file(relativePath: { regex: $image }) {
       childImageSharp {
         fluid(maxWidth: 1200) {
           ...GatsbyImageSharpFluid

@@ -86,7 +86,7 @@ const SinglePortfolio = ({ pageContext: { portfolio }, data }) => {
 }
 export const pageQuery = graphql`
   query GetProject($image: String) {
-    image: file(relativePath: { eq: $image }) {
+    image: file(relativePath: { regex: $image }) {
       childImageSharp {
         fluid(maxWidth: 500) {
           ...GatsbyImageSharpFluid

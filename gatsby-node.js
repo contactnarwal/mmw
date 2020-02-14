@@ -26,7 +26,7 @@ exports.createPages = ({ graphql, actions }) => {
     createPage({
       path: `/portfolio/${portfolio.path}`,
       component: require.resolve("./src/templates/single-portfolio.js"),
-      context: { portfolio, image: portfolio.image },
+      context: { portfolio, image: `/${portfolio.image}/` },
     })
   })
 
@@ -41,7 +41,7 @@ exports.createPages = ({ graphql, actions }) => {
     createPage({
       path: `/${blog.path}`,
       component: require.resolve("./src/templates/SingleBlog.js"),
-      context: { blog, image: blog.source_url },
+      context: { blog, image: `/${blog.source_url}/` },
     })
   })
 
