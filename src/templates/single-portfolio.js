@@ -17,7 +17,7 @@ const P = styled.p({
   },
 })
 
-const SinglePortfolio = ({ pageContext: { portfolio }, data }) => {
+const SinglePortfolio = ({ pageContext: { portfolio, image }, data }) => {
   /*const BG = styled.div`
     background: url("${data.bgimage.childImageSharp.fluid.src}");
     &:before {
@@ -29,6 +29,7 @@ const SinglePortfolio = ({ pageContext: { portfolio }, data }) => {
     position: "absolute";  
     }
   `*/
+  console.log(image)
   const BG = styled.div({
     background: "url(" + data.bgimage.childImageSharp.fluid.src + ")",
     position: "relative",
@@ -85,7 +86,7 @@ const SinglePortfolio = ({ pageContext: { portfolio }, data }) => {
   )
 }
 export const pageQuery = graphql`
-  query GetProject($image: String) {
+  query SinglePortfolio($image: String) {
     image: file(relativePath: { regex: $image }) {
       childImageSharp {
         fluid(maxWidth: 500) {

@@ -1304,14 +1304,6 @@ module.exports = [
     url: "https://www.munadisabilityservice.com.au/ ",
   },
   {
-    path: "limovia-corporate-cars",
-    title: "Limovia Corporate Cars",
-    image: "images/portfolio/1.jpg",
-    tags: ["Business / Events"],
-    content: "",
-    url: "http://www.limoviacorporatecars.com.au/ ",
-  },
-  {
     path: "glowy-smile-teeth",
     title: "Glowy Smile Teeth",
     image: "images/portfolio/Glowy-Smile-Teeth.jpg",
