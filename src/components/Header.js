@@ -1,33 +1,33 @@
 import React from "react"
 import { Link } from "gatsby"
 import { Navbar, Nav, Container, Row, Col } from "react-bootstrap"
-import { FaPhoneVolume, FaTag } from "react-icons/fa"
+import { FaTag } from "react-icons/fa"
 import styles from "./Header.module.css"
+import WhiteLogo from "../images/logo-make-my-light.png"
 
-const Header = () => (
-  <header>
+const Header = props => (
+  <header className={props.isHomePage ? styles.header_css : " "}>
     <Container>
-      <Row className={styles.first_row}>
-        <Col>
-          <p className={styles.header_p}>
-            Complete Web Solution Services Australia
-          </p>
-        </Col>
-        <Col className={styles.header_top_right}>
-          <a href="tel:9802260750">
-            <FaPhoneVolume /> 1300769302
-          </a>
-        </Col>
-      </Row>
       <hr />
       <Row className={styles.top_row}>
         <Col lg="3" sm="6">
           <a href="/">
-            <img src="/new-year-mmw-logo.png" alt="Make My Website New Year" />
+            {props.isHomePage ? (
+              <img src={WhiteLogo} alt="Make My Website New Year" />
+            ) : (
+              <img
+                src="/new-year-mmw-logo.png"
+                alt="Make My Website New Year"
+              />
+            )}
           </a>
         </Col>
         <Col lg="7" sm="6">
-          <Navbar bg="light" expand="lg" className={styles.nav}>
+          <Navbar
+            bg="light"
+            expand="lg"
+            className={props.isHomePage ? styles.home_nav : styles.nav}
+          >
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">

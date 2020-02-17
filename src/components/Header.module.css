@@ -18,11 +18,20 @@
 .top_row {
   align-items: center;
 }
+.nav,
+.home_nav {
+  background: transparent !important;
+}
+.home_nav a {
+  color: white !important;
+  font-weight: 600;
+}
 .nav a {
   font-weight: 600;
   color: #000 !important;
 }
-.nav a:hover {
+.nav a:hover,
+.home_nav a:hover {
   color: #ed1c24 !Important;
 }
 .first_row {
@@ -39,4 +48,9 @@ hr {
   border-radius: 5px;
   font-weight: 500;
   animation: btnWiggle 2s infinite;
+}
+.header_css {
+  position: absolute;
+  z-index: 99999;
+  width: 100%;
 }
