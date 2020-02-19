@@ -11,6 +11,12 @@ import Aim from "../images/aim.png"
 import Identity from "../images/identity-proof.png"
 import Personal from "../images/personal-icon.png"
 import Resultdriven from "../images/resultdriven.png"
+import CounterSupport from "../images/support.png"
+import TestiBg from "../images/skyline-bg.jpg"
+import FiveStar from "../images/5-star-agency-img.png"
+import TestiOne from "../images/lux-property-group.png"
+import LuxIcon from "../images/lux-icon.jpg"
+import FiveStarTesti from "../images/5star-image.png"
 import Img from "gatsby-image"
 
 const HDevider = styled.img`
@@ -32,10 +38,23 @@ const Button = styled.button({
     textDecoration: "none",
   },
 })
+const TestiWrapper = styled.div({
+  background: "url('" + TestiBg + "')",
+  position: "relative",
+  padding: "80px 0px",
+  "::before": {
+    content: "' '",
+    backgroundColor: "rgba(0,0,0,0.66)",
+    position: "absolute",
+    top: "0",
+    height: "100%",
+    width: "100%",
+  },
+})
 const headerCenter = {
   textAlign: "center",
   fontWeight: "400",
-  fontSize: "72px",
+  fontSize: "50px",
 }
 const headingPart = {
   fontWeight: "bold",
@@ -114,7 +133,34 @@ const HeroDesc = styled.p({
   color: "white",
   fontWeight: "bold",
 })
-
+const Counter = styled.h4({
+  fontSize: "40px",
+  color: "white",
+  fontWeight: "bold",
+  margin: "0",
+  padding: "0",
+  textAlign: "center",
+})
+const CounterTitle = styled.h5({
+  color: "white",
+  fontSize: "20px",
+  margin: "0",
+  padding: "0",
+  textAlign: "center",
+})
+const CounterFive = styled.img({
+  maxWidth: "100%",
+  margin: "auto",
+  display: "block",
+})
+const TestiImage = styled.img({
+  width: "100%",
+})
+const UserName = styled.h4({
+  color: "white",
+  fontWeight: "bold",
+  textAlign: "center",
+})
 const Index = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -260,38 +306,7 @@ const Index = () => {
           }
         }
       }
-      imageEighteen: file(
-        relativePath: { regex: "/toybox-early-learning-big.png/" }
-      ) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      imageNineteen: file(relativePath: { regex: "/testi_user.JPG/" }) {
-        childImageSharp {
-          fixed {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      imageTwenty: file(relativePath: { regex: "/five-stars.png/" }) {
-        childImageSharp {
-          fixed {
-            ...GatsbyImageSharpFixed
-          }
-        }
-      }
-      imageTwentyOne: file(
-        relativePath: { regex: "/toybox-early-learning-big.png/" }
-      ) {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
+
       mapImage: file(
         relativePath: { regex: "/australia-red-and-white-map-small.png/" }
       ) {
@@ -306,7 +321,9 @@ const Index = () => {
   const HeroBg = styled.div({
     background: "url('" + data.headerImage.childImageSharp.fluid.src + "')",
     position: "relative",
-    paddingTop: "300px",
+    paddingTop: "200px",
+    paddingBottom: "70px",
+    marginBottom: "50px",
     "::before": {
       content: "' '",
       backgroundColor: "rgba(0,0,0,0.66)",
@@ -321,7 +338,7 @@ const Index = () => {
     <PrimaryLayout isHomePage={true}>
       <HeroBg>
         <Container>
-          <Row>
+          <Row style={{ alignItems: "flex-start" }}>
             <Col>
               <HeroTitle>
                 Speak with Our Specialists to expand your social reach
@@ -335,6 +352,29 @@ const Index = () => {
               <Img fixed={data.mapImage.childImageSharp.fixed} />
             </Col>
           </Row>
+          <Row>
+            <Col lg={{ span: 2, offset: 1 }}>
+              <Counter>1,000 +</Counter>
+              <CounterTitle>Happy Clients</CounterTitle>
+            </Col>
+            <Col lg="2">
+              {" "}
+              <Counter>10+</Counter>
+              <CounterTitle>Years of Expertise</CounterTitle>
+            </Col>
+            <Col lg="2">
+              <Counter>100%</Counter>
+              <CounterTitle>Australian Owned</CounterTitle>
+            </Col>
+            <Col lg="2">
+              <CounterFive src={FiveStar} />
+              <CounterTitle>Australian Owned</CounterTitle>
+            </Col>
+            <Col lg="2">
+              <CounterFive src={CounterSupport} style={{ width: "60px" }} />
+              <CounterTitle>Australian Owned</CounterTitle>
+            </Col>
+          </Row>
         </Container>
       </HeroBg>
 
@@ -346,7 +386,7 @@ const Index = () => {
             </h1>
             <HDevider src={DeviderImg} />
             <br /> <br />
-            <h4 style={{ textAlign: "center/" }}>
+            <h4 style={{ textAlign: "center" }}>
               We Don’t Just Build Websites, We Build Your Online Business!
             </h4>
             <br />
@@ -602,65 +642,64 @@ const Index = () => {
         </Row>
       </div>
       <br />
-      <div
-        style={{
-          padding: "80px 0px",
-        }}
-      >
+      <TestiWrapper>
         <Container>
           <Row>
             <Col>
-              <h2 style={headerCenter}>
-                Happy <span style={headingPart}>Clients</span>
-              </h2>
-
-              <HDevider src={DeviderImg} />
-              <br />
-              <br />
-              <h5 style={{ textAlign: "center/" }}>
-                5 Star Rated Web Design Agency.
-              </h5>
-            </Col>
-          </Row>
-          <Row
-            style={{
-              backgroundImage:
-                "url('//material-design-geometric-stock-dark-black.jpg')",
-              padding: "20px 30px",
-            }}
-          >
-            <Col lg="3">
-              <Img fluid={data.imageEighteen.childImageSharp.fluid} />
-            </Col>
-            <Col lg="6">
-              <Img
-                fixed={data.imageNineteen.childImageSharp.fixed}
-                style={{ margin: "auto", display: "block/" }}
+              <TestiImage
+                src={LuxIcon}
+                style={{
+                  width: "90px",
+                  borderRadius: "100px",
+                  margin: "auto",
+                  display: "block",
+                }}
               />
-              <Img
-                fixed={data.imageTwenty.childImageSharp.fixed}
-                style={{ margin: "auto", display: "block/" }}
-              />
-              <p style={{ color: "white/" }}>
-                Absolutely LOVE my website!! This team is beyond amazing. Had a
-                bad experience with another designer and these guys definitely
-                came to my rescue!! Thank you so much. I LOVE LOVE LOVE my
-                website! Thank you all so much again! Definitely will recommend
-                you to everyone I know!
-              </p>
+              <br /> <br />
               <p>
-                <b style={{ color: "white/" }}>Amanie Kalache - </b>
-                <a href="https://www.123smilephotography.com/">
-                  www.123smilephotography.com/
+                <TestiImage
+                  src={FiveStarTesti}
+                  style={{
+                    maxWidth: "150px",
+                    margin: "auto",
+                    display: "block",
+                  }}
+                />
+              </p>
+              <UserName>Jesse Cai</UserName>
+              <p style={{ textAlign: "center", color: "#fff" }}>
+                “Brilliant customer service as pick up calls even late at night
+                and also with the website professional work on it, easy to use
+                prestige looks. Thank you for the hard work you guys has put
+                into it. Also pricing is great, worth what its delivers.”
+              </p>
+              <p style={{ textAlign: "center" }}>
+                <a
+                  href="https://www.homehotel.com.au/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabindex="-1"
+                  style={{ color: "#ed1c24", textAlign: "center" }}
+                >
+                  www.homehotel.com.au
                 </a>
               </p>
             </Col>
-            <Col lg="3">
-              <Img fluid={data.imageTwentyOne.childImageSharp.fluid} />
+            <Col>
+              <TestiImage src={TestiOne} />
             </Col>
           </Row>
         </Container>
-      </div>
+      </TestiWrapper>
+      <Container>
+        <Row>
+          <Col>
+            <h2 style={headerCenter}>
+              Follow Us On <span style={headingPart}> Instagram</span>
+            </h2>
+          </Col>
+        </Row>
+      </Container>
     </PrimaryLayout>
   )
 }
