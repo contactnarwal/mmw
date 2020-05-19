@@ -19,7 +19,8 @@ const TypingEffect = ({ text, duration, color }) => {
       txt = fullTxt.substring(0, txt.length + 1)
     }
 
-    typingEl.current.innerHTML = '<span class="wrap">' + txt + "</span>"
+    if (typingEl.current !== null)
+      typingEl.current.innerHTML = '<span class="wrap">' + txt + "</span>"
 
     let delta = 200 - Math.random() * 100
 
@@ -36,7 +37,7 @@ const TypingEffect = ({ text, duration, color }) => {
       delta = 500
     }
 
-    setTimeout(function() {
+    setTimeout(function () {
       tick()
     }, delta)
   }
