@@ -1,47 +1,35 @@
-import React from "react"
-import { navigate } from "gatsby"
+import React, { useRef, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
+import PrimaryLayout from "../layouts/PrimaryLayouts.js"
+import { Row, Col, Container } from "react-bootstrap"
+import HeroSlider from "../components/heroSlider.js"
+import TypingEffect from "../components/typingEffect.js"
+function SlideShow() {
+  const data = useStaticQuery(graphql`
+    query {
+      backgrounds: allFile(filter: { relativePath: { regex: "/home_bg/" } }) {
+        nodes {
+          relativePath
+          childImageSharp {
+            fluid(maxWidth: 4000, quality: 100) {
+              ...GatsbyImageSharpFluid_withWebp_noBase64
+            }
+          }
+        }
+      }
+    }
+  `)
 
-import PrimaryLayout from "../layouts/PrimaryLayouts"
-
-const Paginator = (items, page, per_page) => {
-  page = page || 1
-  per_page = per_page || 10
-  const offset = (page - 1) * per_page
-  const paginatedItems = items.slice(offset).slice(0, per_page)
-  const total_pages = Math.ceil(items.length / per_page)
-  return {
-    page: page,
-    per_page: per_page,
-    pre_page: page - 1 ? page - 1 : null,
-    next_page: total_pages > page ? page + 1 : null,
-    total: items.length,
-    total_pages: total_pages,
-    data: paginatedItems,
-  }
-}
-const test = () => {
-  const porfolios = require("../content/portfolio.js")
-  console.log("length is ", porfolios.length)
-  const postsPerPage = 12
-  const numPages = Math.ceil(porfolios.length / postsPerPage)
-  console.log("numPages is ", numPages)
-
-  const data = Paginator(porfolios, 1, 5)
-  console.log(data)
   return (
-    <>
-      <PrimaryLayout>
-        {data.data.map(value => {
-          return (
-            <>
-              <h1>{value.title}</h1>
-            </>
-          )
-        })}
-        <h1>this is atest page</h1>
-        <button onClick={() => navigate("/")}>Home Page</button>
-      </PrimaryLayout>
-    </>
+    <PrimaryLayout>
+      <Container>
+        <Row>
+          <Col style={{ minHeight: "500px" }}>
+            <TypingEffect />
+          </Col>
+        </Row>
+      </Container>
+    </PrimaryLayout>
   )
 }
-export default test
+export default SlideShow

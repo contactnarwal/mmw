@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect, useRef } from "react"
 import PrimaryLayout from "../layouts/PrimaryLayouts.js"
 import { Row, Col, Container } from "react-bootstrap"
 import styled from "@emotion/styled"
@@ -14,11 +14,14 @@ import Resultdriven from "../images/resultdriven.png"
 import CounterSupport from "../images/support.png"
 import TestiBg from "../images/skyline-bg.jpg"
 import FiveStar from "../images/5-star-agency-img.png"
-import TestiOne from "../images/lux-property-group.png"
+
 import LuxIcon from "../images/lux-icon.jpg"
 import FiveStarTesti from "../images/5star-image.png"
 import Img from "gatsby-image"
-
+import Carousel from "react-bootstrap/Carousel"
+import { FaRegHeart, FaRegComment } from "react-icons/fa"
+import { css } from "@emotion/core"
+import TypingEffect from "../components/typingEffect.js"
 const HDevider = styled.img`
   margin: auto;
   display: block;
@@ -125,9 +128,11 @@ const FlipBox = styled.div`
     display: none;
   }
 `
+// hero content
 
 const HeroTitle = styled.h2({
   color: "white",
+  minHeight: "120px",
 })
 const HeroDesc = styled.p({
   color: "white",
@@ -162,6 +167,43 @@ const UserName = styled.h4({
   textAlign: "center",
 })
 const Index = () => {
+  const [index, setIndex] = useState(0)
+  const [direction, setDirection] = useState(null)
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex)
+    setDirection(e.direction)
+  }
+  const CarouselCaption = styled(Carousel.Caption)({
+    background: "rgba(0, 0, 0, 0.8)",
+    left: "0",
+    right: "0",
+    bottom: "0",
+    top: "0",
+    display: "none",
+    padding: "20px",
+  })
+  const CarouselCol = styled(Col)`
+    cursor: pointer;
+    &:hover ${CarouselCaption} {
+      display: block;
+    }
+    &:hover img {
+      transform: scale(1.3);
+    }
+  `
+
+  const CarouselImage = styled(Img)`
+    width: 100%;
+    &:hover ${CarouselCaption} {
+      display: block;
+    }
+    &:img {
+      transform: scale(1);
+
+      transition: 0.3s ease-in-out;
+    }
+  `
   const data = useStaticQuery(graphql`
     query {
       imageOne: file(
@@ -316,8 +358,46 @@ const Index = () => {
           }
         }
       }
+      Instagram: allInstaNode {
+        edges {
+          node {
+            id
+            likes
+            comments
+            mediaType
+            preview
+            original
+            timestamp
+            caption
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 600, maxHeight: 300) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+      testiSlider: allFile(
+        sort: { fields: name, order: DESC }
+        filter: { relativeDirectory: { regex: "/images/testimonial/" } }
+      ) {
+        edges {
+          node {
+            id
+            name
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
     }
   `)
+
   const HeroBg = styled.div({
     background: "url('" + data.headerImage.childImageSharp.fluid.src + "')",
     position: "relative",
@@ -334,15 +414,148 @@ const Index = () => {
     },
   })
 
+  var chunkSize = 4
+  const InstagramWithRow = data.Instagram.edges.reduce(
+    (acc, item) => {
+      let group = acc.pop()
+      if (group.length === chunkSize) {
+        acc.push(group)
+        group = []
+      }
+      group.push(item)
+      acc.push(group)
+      return acc
+    },
+    [[]]
+  )
+  const happyCounter = useRef(null)
+  const yearCounter = useRef(null)
+  const auCounter = useRef(null)
+  const animateValue = (id, start, end, duration) => {
+    const range = end - start
+    let current = start
+    const increment = end > start ? 1 : -1
+    const stepTime = Math.abs(Math.floor(duration / range))
+
+    const timer = setInterval(function() {
+      current += increment
+      id.current.innerHTML = current
+      if (current === end) {
+        clearInterval(timer)
+      }
+    }, stepTime)
+  }
+
+  // testimonials slider
+
+  const Slider = styled.div`
+    width: 100%;
+    overflow: hidden;
+    ul {
+      list-style: none;
+      display: flex;
+      padding: 0px;
+      margin: 0px;
+      min-height: 400px;
+      position: relative;
+      left: 0%;
+      transition: 0.5s all ease;
+    }
+    li {
+      min-width: 100%;
+    }
+    h1 {
+      color: #fff;
+      margin: 0px;
+    }
+    p {
+      color: #fff;
+      margin: 0px;
+    }
+    .text-container {
+      text-align: center;
+      margin: 0px auto;
+      max-width: 900px;
+      padding: 15px;
+    }
+  `
+  let currentSlide = 0
+  let slideTimeout
+  const sliderUl = useRef(null)
+  const setSlide = index => {
+    if (index >= data.testiSlider.edges.length) {
+      // index exceeds total slides, go to first slide
+      currentSlide = 0
+    } else if (index < 0) {
+      // index is below 0, go to last slide
+      currentSlide = data.testiSlider.edges.length
+    } else {
+      // use as is
+      currentSlide = index
+    }
+    sliderUl.current.style.left = `-${currentSlide * 100}%`
+    clearTimeout(slideTimeout)
+    slideTimeout = setTimeout(() => {
+      setSlide(currentSlide + 1)
+    }, 3000)
+  }
+  // start typing effect
+  /*
+  const typingEl = useRef(null)
+  let isDeleting = false
+  let loopNum = 0
+  let txt = ""
+  const period = parseInt(2000, 10) || 2000
+  const toText =
+    '["Happy Clients in All States & Territories.","Design On Point","Lets build a future out of the History","Your Ambition together with our engagement leads to business growth", "Speak with Our Specialists to expand your social reach"]'
+  const toRotate = JSON.parse(toText)
+  const tick = () => {
+    let i = loopNum % toRotate.length
+    let fullTxt = toRotate[i]
+    if (isDeleting) {
+      txt = fullTxt.substring(0, txt.length - 1)
+    } else {
+      txt = fullTxt.substring(0, txt.length + 1)
+    }
+
+    typingEl.current.innerHTML = '<span class="wrap">' + txt + "</span>"
+
+    let delta = 200 - Math.random() * 100
+
+    if (isDeleting) {
+      delta /= 2
+    }
+
+    if (!isDeleting && txt === fullTxt) {
+      delta = period
+      isDeleting = true
+    } else if (isDeleting && txt === "") {
+      isDeleting = false
+      loopNum++
+      delta = 500
+    }
+
+    setTimeout(function() {
+      tick()
+    }, delta)
+  }
+  // end typing effect
+*/
+  const indexEffect = () => {
+    //tick()
+    animateValue(happyCounter, 0, 1000, 1000)
+    animateValue(yearCounter, 0, 10, 5000)
+    animateValue(auCounter, 0, 100, 1000)
+    setTimeout(setSlide, 3 * 1000, 0)
+  }
+  useEffect(indexEffect, [])
   return (
     <PrimaryLayout isHomePage={true}>
       <HeroBg>
         <Container>
           <Row style={{ alignItems: "flex-start" }}>
             <Col>
-              <HeroTitle>
-                Speak with Our Specialists to expand your social reach
-              </HeroTitle>
+              <TypingEffect />
               <HeroDesc>
                 We build successful responsive mobile sites that genuinely
                 connect with your target audience
@@ -354,16 +567,15 @@ const Index = () => {
           </Row>
           <Row>
             <Col lg={{ span: 2, offset: 1 }}>
-              <Counter>1,000 +</Counter>
+              <Counter ref={happyCounter}>1,000 +</Counter>
               <CounterTitle>Happy Clients</CounterTitle>
             </Col>
             <Col lg="2">
-              {" "}
-              <Counter>10+</Counter>
+              <Counter ref={yearCounter}>10+</Counter>
               <CounterTitle>Years of Expertise</CounterTitle>
             </Col>
             <Col lg="2">
-              <Counter>100%</Counter>
+              <Counter ref={auCounter}>100%</Counter>
               <CounterTitle>Australian Owned</CounterTitle>
             </Col>
             <Col lg="2">
@@ -646,47 +858,65 @@ const Index = () => {
         <Container>
           <Row>
             <Col>
-              <TestiImage
-                src={LuxIcon}
-                style={{
-                  width: "90px",
-                  borderRadius: "100px",
-                  margin: "auto",
-                  display: "block",
-                }}
-              />
-              <br /> <br />
-              <p>
-                <TestiImage
-                  src={FiveStarTesti}
-                  style={{
-                    maxWidth: "150px",
-                    margin: "auto",
-                    display: "block",
-                  }}
-                />
-              </p>
-              <UserName>Jesse Cai</UserName>
-              <p style={{ textAlign: "center", color: "#fff" }}>
-                “Brilliant customer service as pick up calls even late at night
-                and also with the website professional work on it, easy to use
-                prestige looks. Thank you for the hard work you guys has put
-                into it. Also pricing is great, worth what its delivers.”
-              </p>
-              <p style={{ textAlign: "center" }}>
-                <a
-                  href="https://www.homehotel.com.au/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  tabindex="-1"
-                  style={{ color: "#ed1c24", textAlign: "center" }}
-                >
-                  www.homehotel.com.au
-                </a>
-              </p>
-            </Col>
-            <Col>
-              <TestiImage src={TestiOne} />
+              <Slider>
+                <ul ref={sliderUl}>
+                  {data.testiSlider.edges.map((slide, index) => {
+                    return (
+                      <li key={index}>
+                        <Row>
+                          <Col>
+                            <TestiImage
+                              src={LuxIcon}
+                              style={{
+                                width: "90px",
+                                borderRadius: "100px",
+                                margin: "auto",
+                                display: "block",
+                              }}
+                            />
+                            <br /> <br />
+                            <p>
+                              <TestiImage
+                                src={FiveStarTesti}
+                                style={{
+                                  maxWidth: "150px",
+                                  margin: "auto",
+                                  display: "block",
+                                }}
+                              />
+                            </p>
+                            <UserName>Jesse Cai</UserName>
+                            <p style={{ textAlign: "center", color: "#fff" }}>
+                              “Brilliant customer service as pick up calls even
+                              late at night and also with the website
+                              professional work on it, easy to use prestige
+                              looks. Thank you for the hard work you guys has
+                              put into it. Also pricing is great, worth what its
+                              delivers.”
+                            </p>
+                            <p style={{ textAlign: "center" }}>
+                              <a
+                                href="https://www.homehotel.com.au/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  color: "#ed1c24",
+                                  textAlign: "center",
+                                }}
+                              >
+                                www.homehotel.com.au
+                              </a>
+                            </p>
+                          </Col>
+                          <Col>
+                            <Img fluid={slide.node.childImageSharp.fluid} />
+                          </Col>
+                        </Row>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </Slider>
             </Col>
           </Row>
         </Container>
@@ -694,9 +924,75 @@ const Index = () => {
       <Container>
         <Row>
           <Col>
+            <br /> <br />
             <h2 style={headerCenter}>
               Follow Us On <span style={headingPart}> Instagram</span>
             </h2>
+            <HDevider src={DeviderImg} />
+            <br />
+            <br />
+            <br />
+          </Col>
+        </Row>
+      </Container>
+      <Container fluid={true}>
+        <Row>
+          <Col
+            css={css`
+              .carousel-control-next {
+                width: 20px;
+                background: black;
+              }
+              .carousel-control-prev {
+                width: 20px;
+                background: black;
+              }
+            `}
+          >
+            <Carousel
+              activeIndex={index}
+              direction={direction}
+              onSelect={handleSelect}
+              indicators={false}
+            >
+              {InstagramWithRow.map((post, index) => {
+                return (
+                  <Carousel.Item>
+                    <Row noGutters={true}>
+                      {post.map(InstaFinal => {
+                        return (
+                          <CarouselCol lg="3" sm="4">
+                            {console.log(InstaFinal)}
+                            <CarouselImage
+                              fluid={
+                                InstaFinal.node.localFile.childImageSharp.fluid
+                              }
+                            />
+
+                            <CarouselCaption>
+                              <Row>
+                                <Col>
+                                  <FaRegHeart />
+                                  &nbsp;
+                                  {InstaFinal.node.likes}
+                                </Col>
+                                <Col>
+                                  <FaRegComment />
+                                  &nbsp;
+                                  {InstaFinal.node.comments}
+                                </Col>
+                              </Row>
+
+                              <p>{InstaFinal.node.caption.substr(0, 105)}...</p>
+                            </CarouselCaption>
+                          </CarouselCol>
+                        )
+                      })}
+                    </Row>
+                  </Carousel.Item>
+                )
+              })}
+            </Carousel>
           </Col>
         </Row>
       </Container>
