@@ -21,7 +21,7 @@ import Img from "gatsby-image"
 import Carousel from "react-bootstrap/Carousel"
 import { FaRegHeart, FaRegComment } from "react-icons/fa"
 import { css } from "@emotion/core"
-import TypingEffect from "../components/typingEffect.js"
+//import TypingEffect from "../components/typingEffect.js"
 const HDevider = styled.img`
   margin: auto;
   display: block;
@@ -428,134 +428,13 @@ const Index = () => {
     },
     [[]]
   )
-  const happyCounter = useRef(null)
-  const yearCounter = useRef(null)
-  const auCounter = useRef(null)
-  const animateValue = (id, start, end, duration) => {
-    const range = end - start
-    let current = start
-    const increment = end > start ? 1 : -1
-    const stepTime = Math.abs(Math.floor(duration / range))
 
-    const timer = setInterval(function() {
-      current += increment
-      id.current.innerHTML = current
-      if (current === end) {
-        clearInterval(timer)
-      }
-    }, stepTime)
-  }
-
-  // testimonials slider
-
-  const Slider = styled.div`
-    width: 100%;
-    overflow: hidden;
-    ul {
-      list-style: none;
-      display: flex;
-      padding: 0px;
-      margin: 0px;
-      min-height: 400px;
-      position: relative;
-      left: 0%;
-      transition: 0.5s all ease;
-    }
-    li {
-      min-width: 100%;
-    }
-    h1 {
-      color: #fff;
-      margin: 0px;
-    }
-    p {
-      color: #fff;
-      margin: 0px;
-    }
-    .text-container {
-      text-align: center;
-      margin: 0px auto;
-      max-width: 900px;
-      padding: 15px;
-    }
-  `
-  let currentSlide = 0
-  let slideTimeout
-  const sliderUl = useRef(null)
-  const setSlide = index => {
-    if (index >= data.testiSlider.edges.length) {
-      // index exceeds total slides, go to first slide
-      currentSlide = 0
-    } else if (index < 0) {
-      // index is below 0, go to last slide
-      currentSlide = data.testiSlider.edges.length
-    } else {
-      // use as is
-      currentSlide = index
-    }
-    sliderUl.current.style.left = `-${currentSlide * 100}%`
-    clearTimeout(slideTimeout)
-    slideTimeout = setTimeout(() => {
-      setSlide(currentSlide + 1)
-    }, 3000)
-  }
-  // start typing effect
-  /*
-  const typingEl = useRef(null)
-  let isDeleting = false
-  let loopNum = 0
-  let txt = ""
-  const period = parseInt(2000, 10) || 2000
-  const toText =
-    '["Happy Clients in All States & Territories.","Design On Point","Lets build a future out of the History","Your Ambition together with our engagement leads to business growth", "Speak with Our Specialists to expand your social reach"]'
-  const toRotate = JSON.parse(toText)
-  const tick = () => {
-    let i = loopNum % toRotate.length
-    let fullTxt = toRotate[i]
-    if (isDeleting) {
-      txt = fullTxt.substring(0, txt.length - 1)
-    } else {
-      txt = fullTxt.substring(0, txt.length + 1)
-    }
-
-    typingEl.current.innerHTML = '<span class="wrap">' + txt + "</span>"
-
-    let delta = 200 - Math.random() * 100
-
-    if (isDeleting) {
-      delta /= 2
-    }
-
-    if (!isDeleting && txt === fullTxt) {
-      delta = period
-      isDeleting = true
-    } else if (isDeleting && txt === "") {
-      isDeleting = false
-      loopNum++
-      delta = 500
-    }
-
-    setTimeout(function() {
-      tick()
-    }, delta)
-  }
-  // end typing effect
-*/
-  const indexEffect = () => {
-    //tick()
-    animateValue(happyCounter, 0, 1000, 1000)
-    animateValue(yearCounter, 0, 10, 5000)
-    animateValue(auCounter, 0, 100, 1000)
-    setTimeout(setSlide, 3 * 1000, 0)
-  }
-  useEffect(indexEffect, [])
   return (
     <PrimaryLayout isHomePage={true}>
       <HeroBg>
         <Container>
           <Row style={{ alignItems: "flex-start" }}>
             <Col>
-              <TypingEffect />
               <HeroDesc>
                 We build successful responsive mobile sites that genuinely
                 connect with your target audience
@@ -567,15 +446,15 @@ const Index = () => {
           </Row>
           <Row>
             <Col lg={{ span: 2, offset: 1 }}>
-              <Counter ref={happyCounter}>1,000 +</Counter>
+              <Counter>1,000 +</Counter>
               <CounterTitle>Happy Clients</CounterTitle>
             </Col>
             <Col lg="2">
-              <Counter ref={yearCounter}>10+</Counter>
+              <Counter>10+</Counter>
               <CounterTitle>Years of Expertise</CounterTitle>
             </Col>
             <Col lg="2">
-              <Counter ref={auCounter}>100%</Counter>
+              <Counter>100%</Counter>
               <CounterTitle>Australian Owned</CounterTitle>
             </Col>
             <Col lg="2">
@@ -583,7 +462,7 @@ const Index = () => {
               <CounterTitle>Australian Owned</CounterTitle>
             </Col>
             <Col lg="2">
-              <CounterFive src={CounterSupport} style={{ width: "60px" }} />
+              <CounterFive style={{ width: "60px" }} />
               <CounterTitle>Australian Owned</CounterTitle>
             </Col>
           </Row>
@@ -857,67 +736,7 @@ const Index = () => {
       <TestiWrapper>
         <Container>
           <Row>
-            <Col>
-              <Slider>
-                <ul ref={sliderUl}>
-                  {data.testiSlider.edges.map((slide, index) => {
-                    return (
-                      <li key={index}>
-                        <Row>
-                          <Col>
-                            <TestiImage
-                              src={LuxIcon}
-                              style={{
-                                width: "90px",
-                                borderRadius: "100px",
-                                margin: "auto",
-                                display: "block",
-                              }}
-                            />
-                            <br /> <br />
-                            <p>
-                              <TestiImage
-                                src={FiveStarTesti}
-                                style={{
-                                  maxWidth: "150px",
-                                  margin: "auto",
-                                  display: "block",
-                                }}
-                              />
-                            </p>
-                            <UserName>Jesse Cai</UserName>
-                            <p style={{ textAlign: "center", color: "#fff" }}>
-                              “Brilliant customer service as pick up calls even
-                              late at night and also with the website
-                              professional work on it, easy to use prestige
-                              looks. Thank you for the hard work you guys has
-                              put into it. Also pricing is great, worth what its
-                              delivers.”
-                            </p>
-                            <p style={{ textAlign: "center" }}>
-                              <a
-                                href="https://www.homehotel.com.au/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                  color: "#ed1c24",
-                                  textAlign: "center",
-                                }}
-                              >
-                                www.homehotel.com.au
-                              </a>
-                            </p>
-                          </Col>
-                          <Col>
-                            <Img fluid={slide.node.childImageSharp.fluid} />
-                          </Col>
-                        </Row>
-                      </li>
-                    )
-                  })}
-                </ul>
-              </Slider>
-            </Col>
+            <Col></Col>
           </Row>
         </Container>
       </TestiWrapper>

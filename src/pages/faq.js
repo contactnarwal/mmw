@@ -3,6 +3,7 @@ import PrimaryLayout from "../layouts/PrimaryLayouts"
 import { Row, Col, Container } from "react-bootstrap"
 import styled from "@emotion/styled"
 import Accordion from "../templates/faq"
+import DeviderImg from "../images/devider.png"
 
 const P = styled.p({
   lineHeight: "28px",
@@ -13,6 +14,10 @@ const Title = styled.h1({
   textAlign: "center",
   fontWeight: "500",
 })
+const HDevider = styled.img`
+  margin: auto;
+  display: block;
+`
 
 const Faq = () => (
   <PrimaryLayout>
@@ -23,11 +28,7 @@ const Faq = () => (
           <br></br>
           <br></br>
           <Title>FAQ's</Title>
-          <img
-            src="/devider.png"
-            alt="devider"
-            style={{ margin: "auto", display: "block" }}
-          />
+          <HDevider src={DeviderImg} />
           <br></br>
           <br></br>
           <br></br>
